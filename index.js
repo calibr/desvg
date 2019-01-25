@@ -35,12 +35,13 @@ function desvg (h, svg) {
       return false
     }
     render() {
+      const props = this.props
       return h(
         'svg',
         Object.assign(
           { dangerouslySetInnerHTML: { __html: content } },
           attributes,
-          this.props
+          props
         ),
         props && props.children
       )
