@@ -30,14 +30,20 @@ function desvg (h, svg) {
   var content = svg.content
   var attributes = svg.attributes
 
-  return function (props) {
-    return h(
-      'svg',
-      Object.assign(
-        { dangerouslySetInnerHTML: { __html: content } },
-        attributes,
-        props
+  return class {
+    shouldComponentUpdate() {
+      return false
+    }
+    render() {
+      return h(
+        'svg',
+        Object.assign(
+          { dangerouslySetInnerHTML: { __html: content } },
+          attributes,
+          this.props
+        ),
+        props && props.children
       )
-    )
+    }
   }
 }
